@@ -31,3 +31,109 @@ def calcular_definitivas(estudiantes: list)->list:
 
 
 #print(estudiantes) 
+
+
+def buscar_elemento(entrada: list, buscado: int)->int:
+    """ Buscar un elemento en una lista
+    Parámetros:
+      entrada (list): Lista en la que se debe buscar el número
+      buscado (int): Número entero a buscar
+    Retorno:
+      int: Número que indica el índice en que se encuentra el elemento buscado. Si no está, retorna -1.
+    """
+    indice = 0
+    for elemento in entrada:
+      if elemento == buscado:
+        return indice
+      indice += 1
+    return -1
+
+
+def conteo_vocales(cadena: str)->int:
+    """ Contador de vocales
+    Parámetros:
+      cadena (str): Cadena de la cual se quieren contar sus vocales.
+    Retorno:
+      int: Retorna un número dependiendo de la posición de las vocales de la cadena.
+    """
+    cadena = cadena.lower()
+    contador_pares = 0
+    contador_impares = 0
+    
+    for i in range (len(cadena)):
+      if cadena[i] in "aeiou":
+        if i % 2 == 0:
+          contador_pares += 1
+        else:
+          contador_impares += 1
+          
+    if contador_impares > contador_pares:
+      return 1
+    elif contador_pares > contador_impares:
+      return 2
+    else:
+        
+      return 0
+    
+    
+def hay_suficientes_divisibles(d: int, numeros: list, n: int)->bool:
+    """ Conteo de Divisibles
+    Parámetros:
+      d (int): El divisor contra el que se evaluarán los números de la lista. El número 'd' será un entero
+              positivo.
+      numeros (list): Una lista de números enteros positivos. La lista tiene al menos un elemento.
+      n (int): La cantidad de números mínima que se espera que cumplan con la condición de ser divisibles
+              por 'd'. El número 'n' será un entero mayor o igual a 0.
+    Retorno:
+      bool: Retorna el valor True si la lista recibida tiene al menos 'n' números que cumplen con ser divisibles
+            por el número 'd'. Retorna False de lo contrario.
+    """
+    contador_divisibles = 0
+    
+    for numero in numeros:
+      if numero % d == 0:
+        contador_divisibles += 1
+        
+      if contador_divisibles >= n:
+        return True
+      
+    return False
+
+
+def palabras_intercaladas(cadena1: str, cadena2: str)->str:
+    """ Palabras intercaladas
+    Parámetros:
+      cadena1 (str): Primera cadena de la cual se desean intercalar sus palabras.
+      cadena2 (str): Segunda cadena de la cual se desean intercalar sus palabras.
+    Retorno:
+      str: Cadena con las palabras intercaladas de las dos cadenas de entrada.
+    """
+    palabras1 = cadena1.split()
+    palabras2 = cadena2.split()
+    
+    resultado = []
+    for palabra1, palabra2 in zip(palabras1, palabras2):
+      resultado.append(palabra1)
+      resultado.append(palabra2)
+      
+    cadena_intercalada = " ".join(resultado)
+    
+    return cadena_intercalada
+
+
+def separar_por_edad(animales: dict, minimo: int, maximo: int)->list:
+    """ Adopción Canina
+    Parámetros:
+      animales (dict): Diccionario cuyas llaves son los nombres de las mascotas y sus valores la edad de
+                    cada una
+      minimo (int): Edad mínima de los animales para esta habitación
+      maximo (int): Edad máxima de los animales para esta habitación
+    Retorno:
+      list: Lista de str con los nombres de los animales para la habitación
+    """
+    animales_filtrados = [nombre for nombre, edad in animales.items() if minimo <= edad < maximo]
+    
+    # Ordena alfabéticamente los nombres de los animales filtrados
+    animales_filtrados.sort()
+    
+    return animales_filtrados
